@@ -24,8 +24,11 @@ const FormSigIn: React.FC = () => {
         setIsLoad(true)
         api.post('login', formDataContent).then(
             response => {
+                localStorage.setItem('@tokenAfiaApp', response.data.token)
+
                 toast.success('Login realizado!', {
-                    onClose: () => {history.push('/panel')}
+                    onClose: () => {history.push('/panel')}, 
+                    autoClose: 2000
                 })
                 
             }
