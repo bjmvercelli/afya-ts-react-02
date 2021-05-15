@@ -1,4 +1,4 @@
-import FormSignIn from '../../../components/Form';
+import FormSignIn from '../../../components/FormSignUp';
 import Nav from '../../../components/Nav';
 import Footer from '../../../components/Footer';
 import {Container} from './styles';

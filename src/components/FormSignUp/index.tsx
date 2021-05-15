@@ -1,4 +1,5 @@
 import React, { useState, useCallback, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../../service/api';
 import { toast } from 'react-toastify';
 import { CardContent } from './styles';
@@ -17,6 +18,8 @@ const Form: React.FC = () => {
 
   const [isLoad, setIsLoad] = useState<boolean>(false); //inicia como false
 
+  const history = useHistory()
+
   const postSignUpData = useCallback( //função p memorização
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -24,13 +27,17 @@ const Form: React.FC = () => {
       api.post('usuarios', formDataContent).then(
         response => {
           toast.success('Cadastro realizado com sucesso! ' + formDataContent.nome);
+        
+          setTimeout( () => {
+            history.push('/login')
+          }, 1500)
         }
       ).catch(err => {
         toast.error('Ooops, falha no cadastro')
       }).finally(() => setIsLoad(false));
 
 
-    }, [formDataContent, isLoad]
+    }, [formDataContent, isLoad, history] //props que sao utilizadas função que serão memorizadas
   )
 
   // '...var' = rest operator - no caso do nome, passa o valor do formDataContent (inicialmente vazios), acessa o nome e passa o evento recebendo o valor

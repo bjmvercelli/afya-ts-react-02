@@ -6,7 +6,7 @@ export const CardContent = styled.div`
     background-color: #e2e2e2;
     padding: 22px;
 
-    form{
+    & form{
         display: grid;
 
         & input {
